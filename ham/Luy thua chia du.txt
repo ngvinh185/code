@@ -1,0 +1,45 @@
+
+Tính a^b%1000000007 với a,b nguyên không âm.
+
+Input Format
+
+2 số nguyên không âm a và b
+
+Constraints
+
+1≤a,b≤10^12
+
+Output Format
+
+Kết quả của bài toán
+
+Sample Input 0
+
+2 10
+Sample Output 0
+
+1024
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const int mod=1000000007;
+ll lt(ll a,ll b){
+    a%=mod;
+    ll res=1;
+    while (b!=0){
+        if (b%2!=0){
+            res*=a;
+            res%=mod;
+        }
+        b=b/2;
+        a*=a;
+        a%=mod;
+    }
+    return res;
+}
+    
+
+int main(){
+    ll n,m;cin>>n>>m;
+    cout<<lt(n,m);
+}

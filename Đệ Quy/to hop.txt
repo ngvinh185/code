@@ -1,0 +1,38 @@
+Cho 2 số nguyên dương N và K. Hãy tính tổ hợp chập K của N. Tiện thể các bạn ôn lại một vài tính chất của tổ hợp chập K của N nhé.
+
+
+Input Format
+
+2 số nguyên dương N và K.
+
+Constraints
+
+0≤k≤n≤10.
+
+Output Format
+
+Kết quả của tổ hợp chập K của N.
+
+Sample Input 0
+
+10 2
+Sample Output 0
+
+45
+
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+int tohop(int n,int k){
+    if(k==0||n==k) return 1;
+    else {
+        return tohop(n-1,k-1)+tohop(n-1,k);
+    }
+}
+int main(){
+    int n;cin>>n;
+    int k;cin>>k;
+    cout<<tohop(n,k);
+}
+
+    

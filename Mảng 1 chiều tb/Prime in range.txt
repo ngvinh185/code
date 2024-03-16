@@ -1,0 +1,76 @@
+Cho Q truy vấn, mỗi truy vấn yêu cầu bạn in ra số lượng số nguyên tố từ L tới R. (Đừng duyệt từ L tới R rồi đếm nhé)
+
+Input Format
+
+Dòng đầu tiên là Q; Q dòng tiếp theo mỗi dòng là 2 số L, R
+
+Constraints
+
+1<=Q<=10^4; 1<=L,R<=10^6;
+
+Output Format
+
+Với mỗi truy vấn in ra số lượng số nguyên tố trong đoạn [L, R]
+
+Sample Input 0
+
+9
+3 17
+1 11
+2 18
+1 15
+4 15
+4 18
+4 17
+2 12
+4 20
+Sample Output 0
+
+6
+5
+7
+6
+4
+5
+5
+5
+6
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int F[10000001];
+int n=10000000;
+void nt(){
+    for(int i=0;i<n;i++){
+        F[i]=1;
+    }
+    F[0]=F[1]=0;
+    for(int i=2;i<=sqrt(n);i++){
+        if (F[i]==1){
+            for(int j=i*i;j<n;j+=i){
+                F[j]=0;
+            }
+        }
+    }
+}
+int a[10000001];
+void kq(){
+    nt();
+    a[0]=a[1]=0;
+    for(int i=2;i<n;i++){
+        if (F[i]) a[i]=a[i-1] +1;
+        else a[i]=a[i-1];
+    }
+}
+int main(){
+    int q;cin>>q;
+    kq();
+    while (q--){
+        int l,r;cin>>l>>r;
+        cout<<a[r]-a[l-1]<<endl;
+    }
+}

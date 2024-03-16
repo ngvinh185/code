@@ -1,0 +1,58 @@
+Cho mảng A[] gồm N phần tử, 28Tech có một câu hỏi đó là trong mảng A[] có bao nhiêu cặp số A[i] và A[j] với i khác j mà tổng 2 số này là 1 số chẵn. Nhiệm vụ của bạn là đếm giúp anh ta số cặp thỏa mãn.
+
+Input Format
+
+Dòng 1 là : số lượng phần tử trong mảng
+
+Dòng 2 là N số trong mảng cách nhau 1 dấu cách
+
+Constraints
+
+1<=N<=10^6
+
+0<=A[i]<=10^6
+
+Output Format
+
+In ra số cặp thỏa mãn
+
+Sample Input 0
+
+8
+11 17 8 18 7 10 3 18 
+Sample Output 0
+
+12
+C1:
+n=int(input())
+a=list(map(int,input().split()))
+
+demchan=0
+demle=0
+res=0
+for i in range(n):
+    if (a[i]%2==0):
+        res+=demchan
+        demchan+=1
+    else:
+        res+=demle
+        demle+=1
+print(res)
+C2:#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+
+int main(){
+    int n ;cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++) cin>>a[i];
+    map<int,int> d;
+    ll dem=0;
+    for(int i=0;i<n;i++){
+        a[i]%=2;
+        if (d.count(a[i])) dem+=d[a[i]];//chan+chan=chan le+le=chan (0+0,1+1)
+        d[a[i]]+=1;
+    }
+    cout<<dem;
+}

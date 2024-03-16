@@ -1,0 +1,66 @@
+Cho 1 bảng số gồm N dòng và mỗi dòng gồm N số, nhiệm vụ của bạn là in ra những giá trị xuất hiện ở mọi dòng. Gợi ý : Dùng map đánh dấu, dòng 1 : đánh dấu các giá trị ở dòng 1 có value = 1, dòng 2 sẽ kiểm tra giá trị nào được đánh dấu ở dòng 1 mới đánh dấu tại dòng 2, tương tự tới dòng n, những số nào được đánh dấu ở cả n dòng sẽ thỏa mãn yêu cầu.
+
+Input Format
+
+Dòng 1 là N : số dòng của bảng số
+
+N dòng tiếp theo mỗi dòng gồm N số nguyên viết cách nhau 1 dấu cách
+
+Constraints
+
+1<=N<=100
+
+Các số trong bảng số là số nguyên int
+
+Output Format
+
+In ra các số xuất hiện ở mọi dòng theo thứ tự từ nhỏ đến lớn, nếu không tồn tại số nào in ra NOT FOUND
+Sample Input 0
+
+5
+0 1 4 0 4 
+3 2 2 3 0 
+0 3 4 0 1 
+0 1 4 4 1 
+0 0 0 0 2 
+Sample Output 0
+
+0 
+
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+bool cmp(pair<int,int> a,pair<int,int> b){
+    return a.second<b.second;
+}
+
+    
+int main(){
+    int n;cin>>n;
+    int a[n][n];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>a[i][j];
+        }
+    }
+    map<int,int> d;
+    for(int i=0;i<n;i++){
+        d[a[0][i]]=1;
+    }
+    int check=0;
+    for(int i=1;i<n;i++){
+        for(int j=0;j<n;j++){
+            if (d[a[i][j]]==i){
+                d[a[i][j]]=i+1;
+            }
+        }
+    }
+    for(auto x:d){
+        if (x.second==n) {
+            cout<<x.first<<" ";
+            check=1;
+        }
+    }
+    if (check==0) cout<<"NOT FOUND";
+}

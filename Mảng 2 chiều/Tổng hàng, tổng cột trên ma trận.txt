@@ -1,0 +1,57 @@
+Cho ma trận cỡ NxM gồm N hàng, mỗi hàng M cột. Hãy tính tổng các phần tử trên từng hàng và tổng các phần tử trên từng cột của ma trận.
+
+Input Format
+
+Dòng đầu tiên là 2 số N và M. N dòng tiếp theo mỗi dòng có M số.
+
+Constraints
+
+1≤n,m≤200; Các phần tử trong ma trận là số dương không quá 10^9.
+
+Output Format
+
+Dòng đầu tiên, in ra N số là tổng của N hàng. Dòng thứ 2 in ra M số là tổng của M cột.
+
+Sample Input 0
+
+3 3
+1 2 3
+4 5 6
+7 8 9
+Sample Output 0
+
+6 15 24 
+12 15 18 
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+int nt(int n){
+	for(int i=2;i<=sqrt(n);i++){
+		if(n%i==0) return 0;
+	}
+	return n>=2;
+}
+int main(){
+	int n;int m;
+	cin>>n>>m;
+	int a[n][m];
+	for(int i=0;i<n;i++){
+		ll tong=0;
+		for(int j=0;j<m;j++){
+			cin>>a[i][j];
+			tong+=a[i][j];
+		}
+		cout<<tong<<" ";
+	}
+	cout<<endl;
+	for(int i=0;i<m;i++){
+		ll tong=0;
+		for(int j=0;j<n;j++){
+			tong+=a[j][i];
+		}
+		cout<<tong<<" ";
+	}
+}
+
+    

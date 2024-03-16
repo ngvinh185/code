@@ -1,0 +1,57 @@
+Cho ma trận A các số nguyên có N hàng và M cột. Điểm được coi là cực đại trong ma trận nếu nó lớn hơn tất các số ở các số ở ô xung quanh mà chung đỉnh với nó. Hãy đếm xem trong ma trận có bao nhiêu điểm cực đại.
+
+Input Format
+
+Dòng đầu tiên N và M. N dòng tiếp theo mỗi dòng gồm M phần tử.
+
+Constraints
+
+1≤N,M≤100; 1≤A[i][j]≤10^9
+
+Output Format
+
+In ra số lượng các điểm cực đại của ma trận.
+
+Sample Input 0
+
+5 3
+1 1 2 
+1 1 1 
+1 1 2 
+2 2 1 
+2 1 2 
+Sample Output 0
+
+1
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+int main(){
+    int n;cin>>n;
+    int m;cin>>m;
+    int a[n][m];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>a[i][j];
+        }
+    }
+    int dem=0;
+    int dx[]={1,-1,0,0,-1,-1,1,1};
+    int dy[]={0,0,-1,-1,-1,1,-1,-1};
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            bool check=true;
+            for(int k=0;k<8;k++){
+                int i1=i+dx[k];
+                int j1=j+dy[k];
+                if(a[i1][j1]>=a[i][j]&&i1>=0&&i1<n&&j1>=0&&j1<m){
+                    check=0;
+                    break;
+                }
+            }
+            if(check==true) dem+=1;
+        }
+    }
+    cout<<dem;
+}

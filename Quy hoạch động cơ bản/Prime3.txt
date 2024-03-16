@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+ll F[10000001];//luu so fibo thu i
+int n=10000000;
+void sang(){
+    for(int i=0;i<n;i++){
+        F[i]=1;
+    }
+    F[0]=F[1]=0;
+    for(int i=2;i<=sqrt(n);i++){
+        if (F[i]==1) {
+            for(int j=i*i;j<=n;j+=i){
+                F[j]=0;
+            }
+        }
+    }
+}
+Cho số nguyên dương N, hãy tính tích các số nguyên tố trong đoạn từ 0 đến N. Khi N = 0 hoặc 1 thì đáp án là 0.
+
+Input Format
+
+Dòng 1 là số bộ test T
+
+T dòng tiếp theo mỗi dòng là 1 số nguyên không âm N
+
+Constraints
+
+1<=T<=10000
+
+0<=N<=10^6
+
+Output Format
+
+Đưa ra kết quả của mỗi test trên 1 dòng, vì kết quả quá lớn nên hãy chia dư cho 10^9 + 7.
+
+Sample Input 0
+
+5
+20
+16
+10
+22
+29
+Sample Output 0
+
+9699690
+30030
+210
+9699690
+469693188 
+
+ll a[10000001];// luu tich so nguyen to tu 0->i
+void prime(){
+    sang();
+    a[0]=a[1]=0;
+    a[2]=2;
+    for(int i=3;i<=n;i++){
+        if (F[i]) {
+            a[i]=a[i-1]*i;
+            a[i]%=mod;
+        }
+        else a[i]=a[i-1];
+    }
+}
+    
+int main(){
+    prime();
+    int t;cin>>t;
+    while (t--){
+        int m;cin>>m;
+        cout<<a[m]%mod<<endl;    
+    
+    }
+}

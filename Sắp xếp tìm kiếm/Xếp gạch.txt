@@ -1,0 +1,71 @@
+Nam có n viên gạch được đánh số từ 1 đến n. Các viên gạch có độ cứng lần lượt là a1, a2,..., an. Một viên gạch có độ cứng x nghĩa là Nam có thể chồng lên trên viên gạch đó tối đa x viên gạch khác, nếu chồng nhiều hơn thì viên gạch đó bị vỡ. Hỏi Nam có thể sắp được chồng gạch cao nhất là bao nhiêu?
+
+Input Format
+
+Dòng đầu tiên là số nguyên n - là số viên gạch.
+Dòng tiếp theo gồm n số nguyên a1, a2,..., an mỗi số cách nhau một khoảng trắng.
+Constraints
+
+1<=n<=10^5; 0≤ai≤ 10^6
+
+Output Format
+
+Số nguyên xác định chiều cao cao nhất của chồng gạch mà Nam sắp được.
+
+Sample Input 0
+
+4
+1 2 3 4
+Sample Output 0
+
+4
+C1:#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+
+
+    
+int main(){
+    int n;cin>>n;
+    int a[n];
+    for(int &x:a) cin>>x;
+    sort(a,a+n,greater<int>());
+    int res=0;int min=1e9;
+    int dem=a[0]-1;
+    for(int i=0;i<n;i++){
+        ++res;
+        if(a[i]<min-1){
+            min=a[i];
+            dem=min;
+        }
+        else{
+            --dem;
+            if (dem==0) break;
+        }
+    }
+    cout<<res;
+}
+        
+    
+C2:#include <bits/stdc++.h>
+using namespace std;
+const int mod=1e9+7;
+using ll = long long ;
+int main(){
+    int n;
+    cin>>n;
+    vector<int> a(n);
+    for(int &x:a) cin>>x;
+    sort(a.begin(),a.end(),greater<int>());
+    int min_val=1e9+1;
+    int res=0;
+    for(int i=0;i<n;i++){
+        min_val--;
+        min_val=min(min_val,a[i]);
+        res++;
+        if (min_val==0) break;
+        
+    }
+    cout<<res;
+}

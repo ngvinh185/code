@@ -1,0 +1,133 @@
+Cho mảng A[][] gồm N hàng, M cột chỉ bao gồm các số 0 và 1. Bạn hãy tiến hành tính chu vi của từng vùng số 1 xuất hiện trong mảng, 2 số 1 được coi là cùng vùng với nhau nếu chúng nằm ở 2 ô chung cạnh. Chu vi của 1 vùng số 1 sẽ là tổng độ dài các cạnh bao quanh của các ố số 1 trong vùng đó. Mỗi ô trong mảng 2 chiều là 1 hình vuông có cạnh độ dài là 1. Xem xét ví dụ sau đây thì chu vi vùng số 1 đầu tiên sẽ là 6, vùng số 2 sẽ có chu vi là 10.
+
+1 1 0 1 1
+
+0 0 0 1 1
+
+0 0 0 1 1
+
+Gợi ý : Đối với mỗi (i, j) lấy 4 - x, trong đó x là số ô số 1 xung quanh chung cạnh với ô i, j thì 4 - x => số cạnh bao bên ngoài mà ô (i, j) đóng góp vào chu vi của miền
+
+Input Format
+
+Dòng 1 là N và M
+
+N dòng tiếp theo mỗi dòng gồm M số 0 hoặc 1
+
+Constraints
+
+1<=N,M<=100
+
+Các phần tử trong mảng A là 0 hoặc 1
+
+Output Format
+
+In ra chu vi của từng vùng theo thứ tự xuất hiện trong mảng (từ trên xuống dưới và từ trái qua phải) cách nhau 1 dấu cách.
+
+Sample Input 0
+
+5 8
+1 1 0 0 0 1 0 0 
+0 0 0 1 1 0 1 1 
+1 0 1 1 0 1 0 1 
+0 0 1 1 0 1 1 0 
+0 1 1 1 0 0 1 0 
+Sample Output 0
+
+6 4 16 8 4 10 
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+int a[101][101];
+int n,m;
+int dem;
+void loang(int i,int j){
+    a[i][j]=2;
+    int dx[4] ={-1,0,1,0};
+    int dy[4] ={0,-1,0,1};
+    for(int k=0;k<4;k++){
+        int i1=i+dx[k];
+        int j1=j+dy[k];
+        if(i1>=0&&i1<n&&j1>=0&&j1<m&&a[i1][j1]>0) continue;
+        else dem+=1;
+    }
+    for(int k=0;k<4;k++){
+        int i1=i+dx[k];
+        int j1=j+dy[k];
+        if(i1>=0&&i1<n&&j1>=0&&j1<m&&a[i1][j1]==1){
+            loang(i1,j1);
+        } 
+    }
+}
+int main(){
+    cin>>n>>m;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>a[i][j];
+        }
+    }
+    vector<int> d;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if (a[i][j]==1){
+                dem=0;
+                loang(i,j);
+                d.push_back(dem);
+            }
+        }
+    }
+    for(int x:d) cout<<x<<" ";
+}
+C2:#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+int a[101][101];
+int b[101][101];
+int n,m;
+int dem;
+int res;
+void loang(int i,int j){
+    a[i][j]=0;
+    int dx[4] ={-1,0,1,0};
+    int dy[4] ={0,-1,0,1};
+    for(int k=0;k<4;k++){
+        int i1=i+dx[k];
+        int j1=j+dy[k];
+        if(i1>=0&&i1<n&&j1>=0&&j1<m&&b[i1][j1]==1){
+            dem+=1;
+        } 
+    }
+    res+=(4-dem);
+    dem=0;
+    for(int k=0;k<4;k++){
+        int i1=i+dx[k];
+        int j1=j+dy[k];
+        if(i1>=0&&i1<n&&j1>=0&&j1<m&&a[i1][j1]==1){
+            loang(i1,j1);
+        } 
+    }
+}
+int main(){
+    cin>>n>>m;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>a[i][j];
+            b[i][j]=a[i][j];
+        }
+    }
+    vector<int> d;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if (a[i][j]==1){
+                dem=0;
+                res=0;
+                loang(i,j);
+                d.push_back(res);
+            }
+        }
+    }
+    for(int x:d) cout<<x<<" ";
+}
+

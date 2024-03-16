@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+Cho mảng A[] gồm N phần tử và số nguyên K, nhiệm vụ của bạn là tìm mảng con liên tiếp ngắn nhất có tổng các phần tử bằng K. Ví dụ với mảng A[] = {1, 1, 3, 1, 2, 4, 1, 1, 2} và K = 6 thì mảng con ngắn nhất có tổng bằng 6 là 2.
+
+Input Format
+
+Dòng thứ nhất gồm N và K; Dòng thứ 2 gồm các phần tử trong mảng A[];
+
+Constraints
+
+1<=K<=N<=10^6; -0<=A[i]<=10^6;
+
+Output Format
+
+In ra độ dài của mảng con ngắn nhất đó hoặc in ra -1 nếu không tồn tại mảng con có tổng bằng K
+
+Sample Input 0
+
+6 4
+1 1 1 3 2 4
+Sample Output 0
+
+1
+
+
+C1:int main() {
+    int n;cin>>n;
+    int k;cin>>k;
+  
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    ll sum=0;
+    map<ll,int> d;//luu tong va dia chi cua no
+    int min_len=1e9;//do dai nho nhat tman
+    for(int i=0;i<n;i++){
+        sum+=a[i];
+        ll x=sum-k;
+        if (d.count(x)) {
+            int len=i-d[x];
+            min_len=min(min_len,len);
+        }
+        if (sum==k){
+            int len=i+1;
+            min_len=min(min_len,len);
+        }
+        d[sum]=i;//luon cap nhat vi tri moi neu trung tong
+    }
+    if (min_len!=1e9) cout<<min_len;
+    else cout<<-1;
+}
+
+
+C2:#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+
+int main() {
+    int n;cin>>n;
+    int k;cin>>k;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    ll sum=0;
+    int ans=1e9;
+    int l=0;
+    for(int i=0;i<n;i++){
+        sum+=a[i];
+        
+        if(sum>k){
+            while(sum>k){
+                sum-=a[l];    
+                ++l;            
+            }
+        }
+        if(sum==k) {
+            ans=min(ans,i-l+1);
+        } 
+    }
+    if (ans==1e9) cout<<-1;
+    else cout<<ans;
+}

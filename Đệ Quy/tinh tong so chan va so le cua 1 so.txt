@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+
+int tongchan(ll n){
+    if (n==0){
+        return 0;
+    }
+    else{
+        if (n%2==0) return n%10+tongchan(n/10);
+        else return tongchan(n/10);
+    }
+}
+int tongle(ll n){
+    if (n==0){
+        return 0;
+    }
+    else{
+        if (n%2==1) return n%10+tongle(n/10);
+        else return tongle(n/10);
+    }
+}
+int main(){
+    ll n;cin>>n;
+    cout<<tongchan(n)<<endl<<tongle(n);
+}

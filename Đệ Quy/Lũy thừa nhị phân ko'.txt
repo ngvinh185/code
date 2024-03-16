@@ -1,0 +1,41 @@
+Cho 2 số nguyên không âm a và b. Hãy tính a^b%(10^9+7). Kiến thức bạn cần sử dụng là Binary Exponentiation.
+
+Input Format
+
+2 số nguyên dương a, b
+
+Constraints
+
+1≤a,b≤10^9
+
+Output Format
+
+In ra kết quả của bài toán.
+
+Sample Input 0
+
+2 10
+Sample Output 0
+
+1024
+
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+ll Mod(ll x,ll y){
+    return ((x%mod)*(y%mod))%mod;
+}
+ll powMod(ll x,ll y){
+    if (y==0) return 1;
+    ll a=powMod(x,y/2);
+    if(y%2==0) return Mod(a,a);
+    else return Mod(x,Mod(a,a));
+}
+int main(){
+    ll n;cin>>n;
+    ll m;cin>>m;
+    cout<<powMod(n,m);
+}
+
+    

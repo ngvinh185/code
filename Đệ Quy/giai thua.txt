@@ -1,0 +1,36 @@
+Tính n giai thừa bằng đệ quy.
+
+Input Format
+
+Số nguyên dương N.
+
+Constraints
+
+0≤n≤10;
+
+Output Format
+
+Kết quả của N!
+
+Sample Input 0
+
+6
+Sample Output 0
+
+720
+
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+ll gt(int n){
+	if (n==0||n==1) return 1;
+	else {
+		return n*gt(n-1);
+	}
+}
+int main(){
+	int n;cin>>n;
+	cout<<gt(n);
+}
+
+    

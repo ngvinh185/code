@@ -1,0 +1,44 @@
+Cho một số nguyên không âm N, hãy in ra chữ số lớn nhất và chữ số nhỏ nhất của N. Viết 2 hàm đệ quy
+
+Input Format
+
+Số nguyên dương N
+
+Constraints
+
+10≤n≤10^18
+
+Output Format
+
+Chữ số lớn nhất và nhỏ nhất của N.
+
+Sample Input 0
+
+1256782
+Sample Output 0
+
+8 1
+#include<bits/stdc++.h>
+using namespace std;
+using ll=long long;
+const int mod=1e9+7;
+int max_digit(ll n){
+    if(n<10) return n;
+    else{
+        return fmax(n%10,max_digit(n/10));
+    }
+}
+
+int min_digit(ll n){
+    if(n<10) return n;
+    else{
+        return fmin(n%10,min_digit(n/10));
+    }
+}
+
+int main(){
+    ll n;cin>>n;
+    cout<<max_digit(n)<<" "<<min_digit(n);
+}
+
+    

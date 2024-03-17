@@ -16,3 +16,5 @@ int main(){
   if(res==0) cout<<"YES";
   else cout<<"NO";
 }
+//input:1010
+//output:YES

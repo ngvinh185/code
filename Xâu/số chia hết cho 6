@@ -12,3 +12,5 @@ int main(){
     if(sum==0) cout<<"YES";
     else cout<<"NO";
 }
+//input:(N khong qua 1000 chu so) 360
+//output:YES

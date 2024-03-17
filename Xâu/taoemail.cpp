@@ -43,3 +43,20 @@ int main(){
     chuanhoamk(birth);
   }
 }
+// Sample Input 0
+
+// 4
+// nguyen   van LONg 20/10/2002
+// ngo Vang Long 20/12/2002
+// Nguyen  Vu Long 22/12/2003
+// ho van  nam 17/09/2002
+// Sample Output 0
+
+// longnv@xyz.edu.vn
+// 20102002
+// longnv2@xyz.edu.vn
+// 20122002
+// longnv3@xyz.edu.vn
+// 22122003
+// namhv@xyz.edu.vn
+// 1792002

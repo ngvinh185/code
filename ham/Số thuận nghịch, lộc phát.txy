@@ -1,0 +1,86 @@
+
+Một số được coi là số đẹp nếu nó là số thuận nghịch, có chứa ít nhất một chữ số 6, và tổng các chữ số của nó có chữ số cuối cùng là 8. Viết chương trình liệt kê các số đẹp trong đoạn giữa 2 số nguyên cho trước, các số cách nhau một dấu cách.
+Input Format
+
+2 số nguyên a, b
+
+Constraints
+
+1≤a≤b≤10^6
+
+Output Format
+
+Liệt kê các số đẹp trong đoạn, các số viết cách nhau một khoảng trống
+
+Sample Input 0
+
+1 400
+Sample Output 0
+
+161
+
+#include<bits/stdc++.h>
+
+using namespace std;
+int nt(int n){
+    if(n<2) return 0;
+    for (int i=2;i<=sqrt(n);i++){
+        if (n%i==0) return 0;
+    }
+    return 1;
+}
+int tn(int n){
+    int tmp=n;
+    int check=0;
+    int sum=0;
+    int lat=0;
+    while (n!=0){
+        int r=n%10;
+        if (r==6){
+            check=1;
+        }
+        sum+=r;
+        lat=lat*10+r;
+        n/=10;
+    }
+    return lat==tmp && check && sum%10==8;
+}
+int a[10000001];
+int m=10000000;
+void sang(){
+    for (int i=0;i<=m;i++){
+        a[i]=1;
+    }
+    a[0]=0;
+    a[1]=0;
+    for (int i=2;i<=sqrt(m);i++){
+        if (a[i]==1){
+            for (int j=i*i;j<=m;j+=i){
+                a[j]=0;
+            }
+        }
+    }
+}
+int main(){
+    int n,m;
+    cin>>n>>m;
+    for (int i=n;i<=m;i++){
+        if (tn(i)){
+            cout<<i<<" ";
+        }
+    }
+}
+    
+   
+    
+
+
+ 
+     
+      
+     
+
+    
+    
+
+    

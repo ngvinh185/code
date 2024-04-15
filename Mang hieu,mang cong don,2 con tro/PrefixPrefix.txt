@@ -1,0 +1,58 @@
+Cho mảng A[] có N phần tử và M thao tác, mỗi thao tác yêu cầu bạn tăng các phần tử ở vị trí L tới R của mảng lên D đơn vị (1<=L<=R<=N). Các thao tác này được đánh số từ 1 đến M, ngoài ra Tèo lại muốn thực hiện K truy vấn, mỗi truy vấn Tèo lại thực hiện các thao tác từ x tới y theo số thứ tự thao tác (1<=x<=y<=M). Bạn hãy giúp Tèo in ra mảng A[] sau K truy vấn
+Input Format
+Dòng 1 là N, M, K
+Dòng 2 là N số trong mảng A[]
+M dòng tiếp theo mỗi dòng gồm 3 số L, R, D
+K dòng tiếp theo mỗi dòng gồm 2 số x, y
+Constraints
+1<=N,M,K<=10^5
+0<=A[i]<=10^5
+1<=L,R<=N, 0<=D<=10^5
+1<=x,y<=M
+Output Format
+In ra mảng sau khi thực hiện xong các truy vấn
+Sample Input 0
+6 5 2
+1 7 5 2 8 7 
+2 6 5
+1 5 1
+1 6 1
+2 6 4
+2 5 4
+2 5
+2 4
+Sample Output 0
+5 23 21 18 24 17
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define ll long long;
+using namespace std;
+int l[10005],r[10005],dis[10005],d[10005],fre[10005];
+int main()
+{
+	vinh nguyen
+	int n,m,k;cin>>n>>m>>k;
+	int a[n+1]={0};
+	for(int i=1;i<=n;i+=1) cin>>a[i];
+	for(int i=1;i<=m;i+=1)
+	{
+		cin>>l[i]>>r[i]>>dis[i];
+	}
+	for(int i=1;i<=k;i+=1)
+	{
+		int x,y;cin>>x>>y;
+		fre[x]+=1,fre[y+1]-=1;
+	}
+	for(int i=1;i<=m;i+=1)// xet tung thao tac bd tu tt 1->m
+	{
+		fre[i]+=fre[i-1];
+		d[l[i]]+=dis[i]*fre[i];
+		d[r[i]+1]-=dis[i]*fre[i];
+	}
+	for(int i=1;i<=n;i+=1)
+	{
+		d[i]+=d[i-1];
+		cout<<a[i]+d[i]<<" ";
+	}
+}

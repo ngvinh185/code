@@ -1,0 +1,54 @@
+Tèo đang làm các bài toán với truy vấn tổng trên đoạn, mỗi truy vấn yêu cầu các bạn tính tổng các phần tử từ chỉ số L tới chỉ số R, tuy nhiên bài toán này đã quá quen thuộc và dễ dàng có thể dùng mảng cộng dồn để giải quyết vì thế Tèo đưa ra thêm 1 yêu cầu cho bài toán.
+Cho trước các truy vấn tổng từ chỉ số L tới chỉ R, bây giờ bạn đã biết trước tất cả Q truy vấn bạn được phép thay đổi thứ tự các phần tử trong mảng 1 lần duy nhất trước khi thực hiện các truy vấn. Hãy thay đổi mảng sao cho tổng các truy vấn trên đoạn đạt được giá trị lớn nhất. Một cách rõ ràng hơn, bạn hãy tính tổng mọi mảng con trong từng truy vấn sau đó cộng lại để đạt được giá trị lớn nhất
+
+Input Format
+Dòng 1 là N và Q
+Dòng 2 là N số trong mảng A[]
+Q dòng tiếp theo, mỗi dòng là 2 chỉ số L, R của truy vấn
+Constraints
+1<=N,Q<=2.10^5
+1<=A[i]<=2.10^5
+1<=L<=R<=N
+Output Format
+In ra tổng lớn nhất có thể đạt được.
+Sample Input 0
+6 2
+5 2 5 3 5 1 
+2 5
+2 4
+Sample Output 0
+33
+
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr)
+using namespace std;
+using ll=long long;
+int d[2*100001];
+int main()
+{
+	vinh nguyen;
+	int n,q;cin>>n>>q;
+	int a[n];
+	for(int i=0;i<n;i+=1)
+	{
+		cin>>a[i];
+	}
+	while(q--)
+	{
+		int l,r;cin>>l>>r;
+		l-=1,r-=1;
+		d[l]+=1,d[r+1]-=1;
+	}
+	for(int i=1;i<n;i+=1)
+	{
+		d[i]=d[i-1]+d[i];
+	}
+	sort(a,a+n);
+	sort(d,d+n);
+	for(int i=0;i<n;i+=1)
+	{
+		cout<<a[i]*d[i]<<" ";
+	}
+}

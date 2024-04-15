@@ -1,0 +1,47 @@
+Cho mảng A[] gồm N số nguyên và số nguyên K, nhiệm vụ của bạn là đếm xem có bao nhiêu mảng con các phần tử *(liên tiếp) trong mảng mà độ chênh lệch giữa phần tử lớn nhất và phần tử nhỏ nhất trong mảng con đó không vượt quá K
+Input Format
+Dòng đầu tiên là N và K
+Dòng thứ 2 là N số trong mảng A[]
+Constraints
+1<=N<=10^5
+1<=A[i],K<=10^6
+Output Format
+In ra số lượng mảng con thỏa mãn đề bài
+Sample Input 0
+10 1
+2 3 1 3 1 4 1 3 1 2 
+Sample Output 0
+12
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+
+using namespace std;
+anonymous()
+{
+	vinh nguyen
+	int n,k;cin>>n>>k;
+	int a[n];
+	for(i,0,n) cin>>a[i];
+	int l=0,i=0;
+	int res=0;
+	multiset<int> d;
+	while(i<n)
+	{
+		d.insert(a[i]);
+		while(d.size()>0 && *(--d.end())-*(d.begin())>k)
+		{
+			auto it =d.find(a[l]);
+			d.erase(it);// phai xoa thong qua con tro neu xoa qua gia no se xoa het
+			l+=1;
+		}
+		res+=i-l+1;
+		i+=1;
+	}
+	cout<<res;
+}

@@ -1,0 +1,70 @@
+Cho số tự nhiên N. Nhiệm vụ của bạn là in ra ước số nguyên tố nhỏ nhất của các số từ 1 đến N. Ước số nguyên tố nhỏ nhất của 1 là 1. Ước số nguyên tố nhỏ nhất của các số chẵn là 2. Ước số nguyên tố nhỏ nhất của các số nguyên tố là chính nó.
+
+Input Format
+
+Một số N được ghi trên một dòng.
+
+Constraints
+
+1≤N≤100000
+
+Output Format
+
+Đưa ra kết quả theo từng dòng
+
+Sample Input 0
+
+6
+Sample Output 0
+
+1
+2
+3
+2
+5
+2
+
+
+#include<bits/stdc++.h>
+
+using namespace std;
+int nt(int n){
+    if(n<2) return 0;
+    for (int i=2;i<=sqrt(n);i++){
+        if (n%i==0) return 0;
+    }
+    return 1;
+}
+int cp(long long n){
+    return sqrt(n)*sqrt(n)==n;
+}
+int main(){
+   long long n;
+    cin>>n;
+    for (long long i=1;i<=n;i++){
+        if (i==1) cout<<"1"<<endl;
+        else if (i%2==0) cout<<"2"<<endl;
+        else if(nt(i)) cout<<i<<endl;
+        else{
+            for (int j=3;j<=sqrt(i);j++){
+                if (i%j==0){
+                    cout<<j<<endl;
+                    break;
+                }
+            }
+        }
+    }
+}
+   
+    
+
+
+ 
+     
+      
+     
+
+    
+    
+
+    

@@ -1,0 +1,78 @@
+Theo Goldbach conjecture, một số nguyên dương chẵn >=4 đều có thể biểu diễn dưới dạng tổng của 2 số nguyên tố. Cho số nguyên dương chẵn N >=4 . Hãy liệt kê các cặp số nguyên tố p, q có tổng đúng bằng N. Ví dụ N = 6 ta có 1 cặp số nguyên tố là 3 + 3 = 6.
+
+Input Format
+
+Dòng đầu tiên đưa vào số lượng bộ test T. Những dòng kế tiếp đưa vào các bộ test. Mỗi bộ test là một số chẵn N.
+
+Constraints
+
+1≤T≤1000; 4≤N≤1000000
+
+Output Format
+
+Đưa ra kết quả mỗi test theo từng dòng, mỗi dòng là một cặp số thỏa mãn. Chú ý mỗi cặp chỉ liệt kê một lần, không xét đến thứ tự.
+
+Sample Input 0
+
+1
+10
+Sample Output 0
+
+3 7
+5 5
+
+#include<bits/stdc++.h>
+
+using namespace std;
+int nt(int n){
+    if(n<2) return 0;
+    for (int i=2;i<=sqrt(n);i++){
+        if (n%i==0) return 0;
+    }
+    return 1;
+}
+int cp(long long n){
+    return sqrt(n)*sqrt(n)==n;
+}
+int a[10000001];
+int m=10000000;
+void sang(){
+    for (int i=0;i<=m;i++){
+        a[i]=1;
+    }
+    a[0]=0;
+    a[1]=0;
+    for (int i=2;i<=sqrt(m);i++){
+        if (a[i]==1){
+            for (int j=i*i;j<=m;j+=i){
+                a[j]=0;
+            }
+        }
+    }
+}
+int main(){
+    int t;
+    cin>>t;
+    sang();
+    for (int i=0;i<t;i++){
+        int n;
+        cin>>n;
+        for (int j=2;j<=n/2;j++){
+            if (a[j] && a[n-j]) cout<<j<<" "<<n-j<<endl;
+        }
+    }
+}
+    
+   
+    
+
+
+ 
+     
+      
+     
+
+    
+    
+
+    

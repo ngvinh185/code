@@ -1,0 +1,51 @@
+
+Cho mảng A[] gồm N số nguyên và số nguyên S, nhiệm vụ của bạn là đếm xem có bao nhiêu mảng con các phần tử liên tiếp trong mảng mà tổng không vượt quá S.
+Input Format
+Dòng đầu tiên là N và S
+Dòng thứ 2 là N số trong mảng A[]
+Constraints
+1<=N<=10^6
+1<=A[i]<=10^6
+1<=S<=10^9
+Output Format
+In ra số lượng mảng con thỏa mãn
+Sample Input 0
+13 14
+5 4 5 2 4 5 1 1 2 5 5 2 2 
+Sample Output 0
+47
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define ll long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+int main()
+{
+	vinh nguyen
+	int n,m;cin>>n>>m;
+	int a[n];
+	for(i,0,n) cin>>a[i];
+	int sum=0;
+	int l=0,i=0;
+	int dem=0;
+	while(i<n)
+	{
+		sum+=a[i];
+		if(sum>m)
+		{
+			while(sum>m)
+			{
+				sum-=a[l];
+				l+=1;
+			}
+		}
+		if(sum<=m) 
+		{
+			dem+=i-l+1;
+		}
+		i+=1;
+	}
+	cout<<dem;
+}

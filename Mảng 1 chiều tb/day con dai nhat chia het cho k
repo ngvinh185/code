@@ -1,0 +1,31 @@
+tim day con lien tiep dai nhat co tong chia het cho k
+1<=n,k<=10^6 -10^6<=a[i]<=10^6
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+anonymous()
+{
+	int n;cin>>n;
+	int k;cin>>k;
+	int a[n];
+	for(i,0,n) cin>>a[i];
+	map<int,int> d;
+	int sum=0;
+	int res=-1;
+	for(i,0,n)
+	{
+		sum=(sum+a[i]%k+k)%k;
+		if(d.count(sum))
+		{
+			res=max(res,i-d[sum]);
+		}
+		if(d.count(sum)==0) d[sum]=i; 
+	}
+	cout<<res;
+}

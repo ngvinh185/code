@@ -55,7 +55,7 @@ anonymous()
 			if(i-l+1<res)
 			{
 				res=i-l+1;
-				index=l;6
+				index=l;
 			}
 		}
 		i+=1; 		

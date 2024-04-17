@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+void findTriple(int a[],int n)
+{
+	bool check=false;
+	for(i,0,n-1)
+	{
+		unordered_set <int> d;
+		for(j,i+1,n)
+		{
+			int x=-(a[i]+a[j]);
+			if(s.find(x)!=s.end())
+			{
+				cout<<x<<" "<<a[i]<<" "<<a[j];
+				check=true;
+			}
+			else d.insert(a[j]);
+		}
+	}
+	if(check==false) cout<<"NOT FOUND";
+}
+anonymous()
+{
+	vinh
+}

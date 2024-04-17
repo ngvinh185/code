@@ -1,0 +1,65 @@
+Cho 2 xâu kí tự S và T, nhiệm vụ của bạn là tìm xâu con ngắn nhất của S chứa đầy đủ mọi kí tự của xâu T. Ví dụ S = ADOBECODEBANCC, T = CABC thì xâu con BANCC là xâu con ngắn nhất của S chứa đầy đủ mọi kí tự của T
+Input Format
+Dòng 1 là xâu S
+Dòng 2 là xâu T
+Constraints
+1<=len(T),len(S)<=10^6
+S, T chỉ chứa các kí tự in thường
+Output Format
+In ra xâu con nhỏ nhất thỏa mãn và xuất hiện đầu tiên nếu có nhiều xâu thỏa mãn. Nếu không tồn tại đáp án in ra -1
+Sample Input 0
+dbcddbaaccacb
+ab
+Sample Output 0
+ba
+Sample Input 1
+ccaadcdcdbdabddb
+dbb
+Sample Output 1
+bdab
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+anonymous()
+{
+	vinh nguyen
+	string s;cin>>s;
+	int dem1=0,dem2=0;// dem so luong phan tu khac nhau cua t vs s
+	string t;cin>>t;
+	map<char,int> mapT; 
+	for(i,0,t.size()) 
+	{
+		mapT[t[i]]+=1;
+		if(mapT[t[i]]==1) dem1+=1;
+	}
+	int l=0,i=0;
+	int res=1e9;
+	int index=-1;
+	map<char,int> mapS;
+	while(i<s.size())
+	{
+		mapS[s[i]]+=1;
+		if( mapT[s[i]] && mapS[s[i]]==mapT[s[i]]) dem2+=1;
+		if(dem1==dem2)
+		{
+			while(mapS[s[l]]>mapT[s[l]])
+			{
+				mapS[s[l]]-=1;
+				l+=1;
+			}
+			if(i-l+1<res)
+			{
+				res=i-l+1;
+				index=l;
+			}
+		}
+		i+=1; 		
+	}
+	cout<<res<<endl;
+	for(i,index,index+res) cout<<s[i];
+}

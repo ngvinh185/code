@@ -1,0 +1,55 @@
+Cho xâu S chỉ gồm chữ cái in thường, nhiệm vụ của bạn là tìm chiều dài của xâu con liên tiếp nhỏ nhất có chứa đầy đủ các kí tự khác nhau của S. Ví dụ S = abcaaaabcad thì xâu con bcad có độ dài nhỏ nhất và chứa đầy đủ các kí tự khác nhau của S.
+Input Format
+Dòng duy nhất chứa xâu S
+Constraints
+1<=len(S)<=10^6
+Output Format
+In ra độ dài xâu con nhỏ nhất tìm được
+Sample Input 0
+bcceedeeaedda
+Sample Output 0
+9
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+anonymous()
+{
+	vinh nguyen
+	string s;cin>>s;
+	set <char> res;
+	for(i,0,s.size()) res.insert(s[i]);
+	int n=res.size();
+	int i=0;int l=0;
+	map<char,int> ans;
+	int min_len=INT_MAX;
+	int dem=0;
+	while(i<s.size())
+	{
+		ans[s[i]]+=1;
+		
+		if(ans[s[i]]==1) dem+=1;
+//		cout<<s[i]<<" "<<ans[s[i]]<<" "<<dem<<endl;
+		if(dem==n)
+		{
+//			cout<<endl<<l<<" "<<i<<endl;
+			while(ans[s[l]]>1)
+			{
+				ans[s[l]]-=1;
+				l+=1;
+			}
+			min_len=min(min_len,i-l+1);
+		}
+//		for(j,l,i+1) cout<<s[j]<<" ";
+//		cout<<endl;
+		
+//		cout<<min_len<<endl;
+		i+=1;
+	}
+	cout<<min_len;
+}

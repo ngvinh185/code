@@ -1,0 +1,44 @@
+Cho xâu kí tự S, Tèo là một người khá kì quặc, anh ta chỉ thích những thứ không trùng lặp. Vì thế anh ta yêu cầu bạn tìm ra độ dài xâu con dài nhất mà các kí tự trong xâu con đó không có bất cứ một kí tự nào được lặp lại.
+Input Format
+Dòng duy nhất chứa xâu S
+Constraints
+1<=len(S)<=10^6
+S chỉ bao gồm chữ cái in thường
+Output Format
+In ra đáp án của bài toán
+Sample Input 0
+dabacdadbbdd
+Sample Output 0
+4
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+anonymous()
+{
+	vinh nguyen
+	string s;cin>>s;
+	map<char,int> d;
+	int res=-1e9;
+	int l=0,i=0;
+	while(i<s.size())
+	{
+		d[s[i]]+=1;
+		if(d[s[i]]>1)
+		{
+			while(d[s[i]]>1)
+			{
+				d[s[l]]-=1;
+				l+=1;
+			}
+		}
+		res=max(res,i-l+1);
+		i+=1;
+	}
+	cout<<res;
+}

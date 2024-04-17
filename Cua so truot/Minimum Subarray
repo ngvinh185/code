@@ -1,0 +1,56 @@
+Cho mảng A[] có N phần tử, bạn hãy tìm ra dãy con các phần tử liên tiếp có tổng tối thiểu bằng K. Nếu có nhiều dãy con thỏa mãn hãy in ra dãy con ngắn nhất xuất hiện đầu tiên, trong trường hợp không tồn tại dãy con thỏa mãn in ra -1.
+Input Format
+Dòng 1 là N và K
+Dòng 2 gồm N số trong mảng A[]
+Constraints
+1<=N<=10^6
+0<=A[i]<=10^6
+0<=K<=10^9
+Output Format
+In ra đáp án của bài toán
+Sample Input 0
+11 7
+2 4 0 4 2 3 3 2 0 0 3 
+Sample Output 0
+4 0 4 
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);
+#define nguyen cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+anonymous()
+{
+	vinh nguyen
+	int n,k;cin>>n>>k;
+	int a[n];
+	for(i,0,n) cin>>a[i];
+	int sum=0;//luu tong tu left den right
+	int res=1e9;//luu do dai min
+	int l=0,i=0,check=0;
+	int res_l,res_i;
+	while(i<n)
+	{
+		sum+=a[i];
+		while(sum>=k)
+		{
+			if(res>i-l+1)
+			{
+				res=i-l+1;
+				res_l=l;
+				res_i=i;
+			}
+			sum-=a[l];
+			l+=1;
+			check=1;
+		}
+		i+=1;
+	}
+	if(check==1) 
+	{
+		for(i,res_l,res_i+1) cout<<a[i]<<" ";
+	}
+	else cout<<-1;
+}

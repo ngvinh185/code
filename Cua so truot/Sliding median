@@ -1,0 +1,84 @@
+Cho mảng A[] gồm N phần tử và số nguyên K, bạn hãy tìm median của mọi dãy con liên tiếp cỡ K của mảng A[].
+Input Format
+Dòng 1 là N và K
+Dòng 2 gồm N số trong mảng A[]
+Constraints
+1<=K<=N<=2.10^5
+1<=A[i]<=10^9
+Output Format
+In ra N - K + 1 median của các dãy con
+Sample Input 0
+8 2
+7 6 6 2 9 6 2 7 
+Sample Output 0
+6 6 2 2 6 2 2 
+Sample Input 1
+6 1
+7 2 9 2 4 6 
+Sample Output 1
+7 2 9 2 4 6 
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define for(i,a,b) for(int i=a;i<b;i++)
+#define For(i,a,b) for(int i=a;i>=b;i--)
+using namespace std;
+anonymous()
+{
+	vinh
+	int n;cin>>n;
+	int k;cin>>k;
+	int a[n];
+	for(i,0,n)
+	{
+		cin>>a[i];
+	}
+	multiset<int> d;
+	for(i,0,k) d.insert(a[i]);
+	if(k%2==0)
+	{
+		auto it=d.begin();
+		for(i,1,d.size()/2)
+		{
+			++it;
+		}
+		cout<<*(it)<<" ";
+		for(i,1,n-k+1)
+		{
+			d.insert(a[i+k-1]);
+			if(a[i+k-1]>=*(it))
+			{
+				it++;
+			}
+			auto it1=d.lower_bound(a[i-1]);
+//			if() it--;
+			if (*(it1)>*(it)||it1==it) it--; 
+			d.erase(it1);
+			cout<<*(it)<<" ";
+		}
+	}
+	else 
+	{
+		auto it=d.begin();
+		for(i,1,d.size()/2+1)
+		{
+			it++;
+		}
+		cout<<*(it)<<" ";
+		for(i,1,n-k+1)
+		{
+			d.insert(a[i+k-1]);
+			if(a[i+k-1]<*(it))
+			{
+				it--;
+			}
+			auto it1=d.lower_bound(a[i-1]);
+			if(*(it1)<=*(it)) it++;
+			d.erase(it1);
+			cout<<*(it)<<" ";
+			
+		}
+	}
+}

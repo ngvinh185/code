@@ -1,0 +1,16 @@
+cho so nguyen duong n (len(n)<=1000) . tim chu so cuoi cung cua 2008^n. noi cach khac la tim (2008^n)%10
+(2008^n)%10= ( 2008 % 10 )^n %10 = 8^n %10 ma 8 la lt cua 2 ( 8 = 2^3 ) nen chu so cuoi cung cua 8^n se tuan hoan voi chu ki 4
+
+// in ra bac va 8^bac de xem tuan hoan ntn
+lt8=1;
+for(int i=0;i<=20;i+=1)
+{
+  cout<<i<<" "<<lt%10<<endl;
+  lt*=8;
+}
+=> bac == 0 : lt8 % 10 =1
+   bac % 4 == 0 :lt8 % 10=6
+   bac % 4 == 1:lt8 % 10 = 8
+   bac % 4 == 2: lt8 % 10= 4
+   bac % 4 == 3: lt8 % 10 = 2 
+=> nghia la tim n % 4 (==0 ,1,2,3) thi se ra (8^n)%10 la chu so cuoi cung cua 8^n%10

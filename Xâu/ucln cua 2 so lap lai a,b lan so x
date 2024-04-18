@@ -1,0 +1,25 @@
+tim ucln cua p va q, bt p lap lai a lan so x, q lap lai b la so x 
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+int euclid(int a,int b)
+{
+	if(b==0) return a;
+	return euclid(b,b%a);
+}
+main()
+{
+	vinh
+	ll x,a,b;cin>>x>>a>>b;
+	int k=euclid(a,b);
+	my_for(i,0,k)
+	{
+		cout<<x; 
+	}
+}

@@ -15,10 +15,10 @@ string cong2string(string a, string b) {
     while (a.size() < max_len) a += "0";
     while (b.size() < max_len) b += "0";
     string res(max_len, '0');
-    int carry = 0;
+    int nho = 0;
     my_for(i, 0, max_len) {
-        int tmp = (a[i] - '0') + (b[i] - '0') + carry;
-        carry = tmp / 10;
+        int tmp = (a[i] - '0') + (b[i] - '0') + nho;
+        nho = tmp / 10;
         res[i] = tmp % 10 + '0';
     }
     reverse(res.begin(), res.end());

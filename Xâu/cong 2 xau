@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+
+string cong2string(string a, string b) {
+    int max_len = max(a.size(), b.size()) + 1;
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+    while (a.size() < max_len) a += "0";
+    while (b.size() < max_len) b += "0";
+    string res(max_len, '0');
+    int carry = 0;
+    my_for(i, 0, max_len) {
+        int tmp = (a[i] - '0') + (b[i] - '0') + carry;
+        carry = tmp / 10;
+        res[i] = tmp % 10 + '0';
+    }
+    reverse(res.begin(), res.end());
+    if (res[0] == '0') return res.substr(1);
+    return res;
+}
+
+anonymous() {
+    vinh
+    string a, b;
+    cin >> a >> b;
+    cout << cong2string(a, b);
+    return 0;
+}

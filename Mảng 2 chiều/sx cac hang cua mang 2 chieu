@@ -1,0 +1,32 @@
+sx cac hang cua mang 2 chieu
+// cac hang la 1 mang 1 chieu ( a[i] la mang 1 chieu )
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+//#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+main()
+{
+	int n;cin>>n;
+	int a[n][n];
+	my_for(i,0,n)
+	{
+		Foreach(x,a[i]) cin>>x;
+	}
+	my_for(i,0,n)
+	{
+		sort(a[i],a[i]+n);
+	}
+	my_for(i,0,n)
+	{
+		my_for(j,0,n)
+		{
+			cout<<a[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+}

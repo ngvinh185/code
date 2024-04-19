@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+//#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+
+int F[505][505];
+int a[505][505];
+main()
+{
+	int n;cin>>n;
+	my_for(i,1,n+1)
+	{
+		my_for(j,1,n+1) cin>>a[i][j];
+	}
+	int res=0;
+//	cout<<endl;
+	my_for(j,1,n+1)
+	{
+		my_for(i,1,n+1)
+		{
+			int dx[]={-1,-1,-1};
+			int dy[]={-1,0,1};
+			int max_val=-1e9;
+			my_for(k,0,3)
+			{
+				int j1=j+dx[k],i1=i+dy[k];
+				max_val=max(max_val,F[i1][j1]);
+			}
+			F[i][j]=max_val+a[i][j];
+//			cout<<F[i][j]<<" ";
+			res=max(res,F[i][j]);	
+		}
+//		cout<<endl;
+	}
+//	my_for(i,0,n)
+//	{
+//		Foreach(x,F[i]) cout<<x<<" ";
+//		cout<<endl;
+//	}
+	cout<<res;
+	
+	
+}

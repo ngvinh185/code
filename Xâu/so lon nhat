@@ -1,0 +1,29 @@
+1234=1!*2!*3!*4!=288
+33222=3!*3!*2!*2!*2!=288
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+anonymous()
+{
+	vinh
+	string s;cin>>s;
+	string res="";
+	my_for(i,0,s.size())
+	{
+		if(s[i]=='1'||s[i]=='0') continue;
+		if(s[i]=='4') res+="322";
+		else if(s[i]=='6') res+="53";
+		else if(s[i]=='8') res+="7222";
+		else if(s[i]=='9') res+="7332";
+		else res+=s[i];
+ 	}
+ 	sort(res.begin(),res.end(),greater<char>());
+ 	cout<<res;
+}

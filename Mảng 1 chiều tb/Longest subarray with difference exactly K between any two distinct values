@@ -1,0 +1,63 @@
+// C++ implementation to find the 
+// longest subarray consisting of 
+// only two values with difference K 
+#include <bits/stdc++.h> 
+using namespace std; 
+
+// Function to return the length 
+// of the longest sub-array 
+#include <bits/stdc++.h>
+using namespace std;
+int kdistinct(int a[],int n,int k)
+{
+	set<int> d;
+	int max_val=-1e9;
+	int i,j;
+	for(i=0;i<n;i+=1)
+	{
+		d.insert(a[i]);
+		for(j=i+1;j<n;j+=1)
+		{
+			if (abs(a[j]-a[i])==0 || abs(a[j]-a[i])==k)
+			{
+				if(d.count(a[j])==0)
+				{
+					if(d.size()==2) 
+						break;
+					else
+						d.insert(a[j]);	
+				}
+			}
+			else 
+				break; 
+		}
+		if(d.size()==2) 
+		{
+			max_val=max(max_val,j-i);
+		}
+		d.clear();
+	}
+	return max_val;
+}
+
+
+
+// Driver Code 
+int main() 
+{ 
+	int arr[] = { 5, 7, 1, 1, 2, 4, 4, 4, 5, 5, 4, 5, 8, 9}; 
+
+	int N = sizeof(arr) 
+			/ sizeof(arr[0]); 
+	int K = 1; 
+
+	int length = kdistinct( 
+		arr, N, K); 
+
+	if (length == 1) 
+		cout << -1; 
+	else
+		cout << length; 
+
+	return 0; 
+} 

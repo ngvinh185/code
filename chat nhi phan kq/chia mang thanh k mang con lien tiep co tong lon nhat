@@ -1,0 +1,51 @@
+Bạn được cung cấp một n số nguyên dương nhiệm vụ của bạn là chia thành chiua mang thanh k mang con liên tiếp sao cho tổng lớn nhất trong một mang con càng nhỏ càng tốt
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+anonymous()
+{
+	vinh
+	int n,x;cin>>n>>x;
+	int a[n];
+	int r=0;
+	int res;
+	Foreach(x,a) 
+	{
+		cin>>x;
+		r+=x;
+	}
+	int l=0;
+	while(l<=r)
+	{
+		int m=(l+r)/2;
+		int dem=0;
+		int sum=0;
+		int check=0;
+		my_for(i,0,n)
+		{
+			sum+=a[i];
+			if(sum>m)
+			{
+				check=1;
+				dem+=1;
+				sum=a[i];
+			}
+		}
+		dem+=1;
+		if(dem<=x)
+		{
+			res=m;
+			r=m-1;
+		}
+		else l=m+1;
+//		else r=m-1;
+	}
+	cout<<res;
+}

@@ -1,0 +1,31 @@
+Kỳ thi cuối kỳ môn Triết ở trường đại học yxz sắp diễn ra teo và bạn có ý định sẽ photo phao để bán kiếm tiền hiện tại Teova ban của mình đã có bản gốc phao thi theo ước tính của tèo thì sẽ co n bạn mua phao, teo không có ý định bán bản phao gốc của mình nen se đi photo bản n ban để đi bán, towis quán photo chỉ còn hai máy photo có thể hoạt động trong đó máy 1 can x giay để photo xong 1 ban may thứ hai cần y giay vì muốn nhanh chóng đem phao đi bán bên tèo muốn nhờ bạn tính hộ anh ấy cần ít nhất bao nhiêu giây để có thể photo ra n ở bản khác nhau từ một bản gốc ban đầu chú ý các bạn chú ý các máy photo có thể photo từ bản gốc hoặc photo từ bản sao hai máy này có thể hoạt động đồng thời
+
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+anonymous()
+{
+	vinh
+	int res;
+	int n,x,y;cin>>n>>x>>y;
+	int l=0,r=max(x,y)*n;
+	while(l<=r)
+	{
+		int m=(l+r)/2;
+		m-=min(x,y);
+		int s=m/x+m/y;
+		if(s>=n-1)
+		{
+			res=m;
+			r=m-1;
+		}
+		else l=m+1;
+	}
+}

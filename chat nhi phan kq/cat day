@@ -1,0 +1,37 @@
+Có n sợi dây bạn cần cắt k đoạn dây có cùng chiều dài từ chúng tìm chiều dài tối đa của các mảnh giấy bạn có thể nhận được
+
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+anonymous()
+{
+	vinh
+	int n,k;cin>>n>>k;
+	double res;
+	int a[n];
+	my_for(i,0,n)
+		cin>>a[i];
+	double l=0,r=*min_element(a,a+n);
+	my_for(i,0,1000)
+	{
+		double m=(l+r)/2;
+		int dem=0;
+		my_for(i,0,n)
+		{
+			dem+=(int)a[i]/m;
+		}	
+		if(dem>=k)
+		{
+			l=m;
+			res=m;
+		}
+		else r=m; 
+	}	
+	cout<<fixed<<setprecision(6)<<res;
+}

@@ -1,3 +1,11 @@
+Một nhà máy có n máy có thể được sử dụng để tạo ra sản phẩm 
+mục tiêu của bạn là tạo ra tổng số sản phẩm 
+đối với mỗi máy bạn biết số dây nó cần để tạo ra một sản phẩm 
+các máy có thể hoạt động đồng thời và bạn có thể tự do quyết định lịch trình của chúng
+thời gian ngắn nhất cần thiết để làm ra tiền sản phẩm là bao nhiêu
+input 3 7
+	3 2 5
+output 8
 #include <bits/stdc++.h>
 #define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
 #define anonymous main

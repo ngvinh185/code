@@ -1,0 +1,31 @@
+Trong lớp học của teo có các thành Domino hình chữ nhật có chiều rộng A và chiều cao b teo hiện là học sinh lớp một thầy giáo có giao cho tèo một bài toán đó là hãy đi tìm một bàn hình vuông có cạnh nhỏ nhất sao cho có thể xếp nở thành Domino vào hình vuông này teo không cần thiết phải xếp kín cái bang hình vuông này nhưng không được phép xoay ngang thanh Domino 
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+anonymous()
+{
+	vinh
+	int a,b,n;cin>>a>>b>>n;
+	int l=max(a,b);
+	int res;
+	int r=max(a,b)*n;
+	while(l<r)
+	{
+		int m=(l+r)/2;
+		int res1=m/a;
+		int res2=m/b;
+		if(res1*res2>=n)
+		{
+			res=m;
+			r=m-1;
+		}
+		else l=m+1;
+	}
+	cout<<res;
+}

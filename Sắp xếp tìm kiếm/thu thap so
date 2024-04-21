@@ -1,0 +1,29 @@
+Bạn được cung cấp một mang chứa mỗi số từ một đến n đúng một lần nhiệm vụ của bạn đã thu thập các số từ một đến n theo thứ tự tăng dần trên mỗi vòng bạn đi qua mang từ trái sang phải và thu thập càng nhiều số càng tốt tổng vong sẽ là bao nhiêu
+#include <bits/stdc++.h>
+#define vinh ios::sync_with_stdio(false);cin.tie(nullptr);
+#define anonymous main
+#define int long long
+#define my_for(i,a,b) for(int i=a;i<b;i++)
+#define my_For(i,a,b) for(int i=a;i>=b;i--)
+#define foreach(x,a) for(auto x:a)
+#define Foreach(x,a) for(auto &x:a)
+using namespace std;
+int F[2*100001];
+anonymous()
+{
+	vinh
+	int n;cin>>n;
+	int a[n];
+	my_for(i,0,n)
+	{
+		cin>>a[i];
+		F[a[i]]=i;
+	}
+	int dem=0;
+	my_for(i,0,n)
+	{
+		if(a[i]==1) dem+=1;
+		else if(F[a[i]-1]>F[a[i]]) dem+=1;
+	}
+	cout<<dem;
+}
